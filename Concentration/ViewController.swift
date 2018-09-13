@@ -23,6 +23,8 @@ class ViewController: UIViewController
     
     @IBOutlet var cardButtons: [UIButton]!
     
+    @IBOutlet var newGameButton: [UIButton]!
+    
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
@@ -31,9 +33,14 @@ class ViewController: UIViewController
         } else {
             print("chosen card was not in cardButtons")
         }
-        
     }
     
+    @IBAction func touchNewGameButton(_ sender: UIButton) {
+        game.startNewGame()
+        flipCount = 0
+        updateViewFromModel()
+    }
+
     func updateViewFromModel() {
         for index in cardButtons.indices {
             let button = cardButtons[index]

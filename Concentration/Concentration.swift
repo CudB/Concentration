@@ -43,6 +43,15 @@ class Concentration
         cards = sortedCards
     }
     
+    func startNewGame() {
+        for index in 0..<cards.count {
+            cards[index].isFaceUp = false
+            cards[index].isMatched = false
+        }
+        sortCards(cards: &cards)
+        indexOfOneAndOnlyFaceUpCard = nil
+    }
+    
     init(numberOfPairsOfCards: Int) {
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
