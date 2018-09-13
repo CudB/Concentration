@@ -33,11 +33,11 @@ class Concentration
         }
     }
    
-    // Sorts an array of type Card
-    // Takes [Card] as an argument and mutates it
+    // Sorts an array of type Card through mutation of the inout argument
     func sortCards(cards: inout [Card]) {
         var sortedCards = [Card]()
         for _ in 1...cards.count {
+            // Randomly removes a card from cards and adds it to sortedCards
             sortedCards += [cards.remove(at: Int(arc4random_uniform(UInt32(cards.count))))]
         }
         cards = sortedCards
