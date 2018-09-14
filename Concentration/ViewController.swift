@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController
 {
 
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
-    
+    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2, numberOfThemes: emojiSets.count)
+
     var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
@@ -36,8 +36,10 @@ class ViewController: UIViewController
     }
     
     @IBAction func touchNewGameButton(_ sender: UIButton) {
-        game.startNewGame()
+        game.startNewGame(numberOfThemes: emojiSets.count)
         flipCount = 0
+        emoji = [Int:String]()
+        currentEmojiSet = emojiSets[game.theme]
         updateViewFromModel()
     }
 
@@ -55,14 +57,23 @@ class ViewController: UIViewController
         }
     }
     
-    var emojiChoices = ["🎃","👻","😱","😈","🙀","🦇","🍭","🍎","🍬"]
+    var emojiSets = [
+        ["🎃","👻","😱","😈","🙀","🦇","🍭","🍎","🍬"],
+        ["🏒","🎾","⚾️","🏈","⚽️","🏀","🏐","🏓","🏸"],
+        ["🐀","🐂","🐅","🐇","🐉","🐍","🐎","🐐","🐒","🐓","🐕","🐖"],
+        ["🚗","🚌","🏎","🚓","🚑","🚒","🚜","🚐","🚚"],
+        ["🇨🇦","🇺🇸","🇨🇳","🇷🇺","🇬🇧","🇲🇽","🇦🇺","🇯🇵","🇰🇷"],
+        ["😀","😂","☺️","🧐","😔","😡","🤔","🙄","😴"]
+    ]
+
+    lazy var currentEmojiSet = emojiSets[game.theme]
     
     var emoji = [Int:String]()
     
     func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-                let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
-                emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+        if emoji[card.identifier] == nil, currentEmojiSet.count > 0 {
+                let randomIndex = Int(arc4random_uniform(UInt32(currentEmojiSet.count)))
+                emoji[card.identifier] = currentEmojiSet.remove(at: randomIndex)
         }
         return emoji[card.identifier] ?? "?"
     }

@@ -11,6 +11,7 @@ import Foundation
 class Concentration
 {
     var cards = [Card]()
+    var theme = Int()
     
     var indexOfOneAndOnlyFaceUpCard: Int?
     
@@ -43,7 +44,9 @@ class Concentration
         cards = sortedCards
     }
     
-    func startNewGame() {
+    // Start a new game by reverting to initial game state and reshuffling all cards
+    func startNewGame(numberOfThemes: Int) {
+        theme = Int(arc4random_uniform(UInt32(numberOfThemes)))
         for index in 0..<cards.count {
             cards[index].isFaceUp = false
             cards[index].isMatched = false
@@ -52,11 +55,11 @@ class Concentration
         indexOfOneAndOnlyFaceUpCard = nil
     }
     
-    init(numberOfPairsOfCards: Int) {
+    init(numberOfPairsOfCards: Int, numberOfThemes: Int) {
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
-        sortCards(cards: &cards)
+        startNewGame(numberOfThemes: numberOfThemes)
     }
 }
