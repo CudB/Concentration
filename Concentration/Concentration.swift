@@ -16,7 +16,7 @@ class Concentration
     var indexOfOneAndOnlyFaceUpCard: Int?
     
     var flipCount = 0
-    var score = 0
+    var score = Score(startingScore: 100)
     
     func chooseCard(at index: Int) {
         if !cards[index].isMatched {
@@ -26,14 +26,14 @@ class Concentration
                     // Successful match; score incremented.
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
-                    score += 2
+                    score.increaseScore(by: 10)
                 } else {
                     // Mismatch; score deduction if a card has already been seen.
                     if cards[matchIndex].hasBeenSeen == true {
-                        score -= 1
+                        score.decreaseScore(by: 5)
                     }
                     if cards[index].hasBeenSeen == true {
-                        score -= 1
+                        score.decreaseScore(by: 5)
                     }
                 }
                 cards[index].isFaceUp = true
@@ -74,7 +74,7 @@ class Concentration
         sortCards(cards: &cards)
         indexOfOneAndOnlyFaceUpCard = nil
         flipCount = 0
-        score = 0
+        score.resetScore()
     }
     
     init(numberOfPairsOfCards: Int, numberOfThemes: Int) {

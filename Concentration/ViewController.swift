@@ -59,7 +59,7 @@ class ViewController: UIViewController
             }
         }
         flipCountLabel.text = "\(game.flipCount) Flips"
-        scoreLabel.text = "Score: \(game.score)"
+        scoreLabel.text = "Score: \(game.score.value)"
     }
     
     // An array containing various themes.
