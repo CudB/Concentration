@@ -77,6 +77,7 @@ class Concentration
         indexOfOneAndOnlyFaceUpCard = nil
         flipCount = 0
         score.resetScore()
+        currentDateTime = Date()
     }
     
     init(numberOfPairsOfCards: Int, numberOfThemes: Int) {
