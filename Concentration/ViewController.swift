@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController
 {
+    // Overrides the default UI colors to match the selected theme when the app is loaded.
+    override func viewDidLoad() {
+        updateViewFromModel()
+    }
 
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2, numberOfThemes: themeSets.count)
     
