@@ -174,11 +174,18 @@
                                     <action selector="touchNewGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YmB-N0-jVF"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFm-qv-hwT">
-                                <rect key="frame" x="72" y="588" width="230" height="114"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 Flips" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFm-qv-hwT">
+                                <rect key="frame" x="116" y="46" width="230" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="40"/>
                                 <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMy-kx-aRd">
+                                <rect key="frame" x="28" y="79" width="199" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="40"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -187,6 +194,7 @@
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="PFm-qv-hwT" id="7Ph-gY-NTW"/>
+                        <outlet property="scoreLabel" destination="LMy-kx-aRd" id="0p2-mq-iwy"/>
                         <outletCollection property="cardButtons" destination="2pt-XL-htu" collectionClass="NSMutableArray" id="OZb-aY-ejZ"/>
                         <outletCollection property="cardButtons" destination="Wcd-fd-DWA" collectionClass="NSMutableArray" id="RNs-8Y-OEG"/>
                         <outletCollection property="cardButtons" destination="rpM-0p-riJ" collectionClass="NSMutableArray" id="EyC-de-gG6"/>
