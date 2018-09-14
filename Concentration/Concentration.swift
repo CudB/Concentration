@@ -16,7 +16,8 @@ class Concentration
     var indexOfOneAndOnlyFaceUpCard: Int?
     
     var flipCount = 0
-    var score = Score(startingScore: 100)
+    var score = Score()
+    var currentDateTime = Date()
     
     func chooseCard(at index: Int) {
         if !cards[index].isMatched {
@@ -26,7 +27,8 @@ class Concentration
                     // Successful match; score incremented.
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
-                    score.increaseScore(by: 10)
+                    score.increaseScore(by: 20 + Int(currentDateTime.timeIntervalSinceNow)) // Increase score by 20 with a deduction of 1 point per second elapsed
+                    currentDateTime = Date()
                 } else {
                     // Mismatch; score deduction if a card has already been seen.
                     if cards[matchIndex].hasBeenSeen == true {

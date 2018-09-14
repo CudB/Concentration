@@ -18,11 +18,8 @@ class ViewController: UIViewController
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2, numberOfThemes: themeSets.count)
     
     @IBOutlet weak var scoreLabel: UILabel!
-    
     @IBOutlet weak var flipCountLabel: UILabel!
-    
     @IBOutlet var cardButtons: [UIButton]!
-    
     @IBOutlet var newGameButton: [UIButton]!
     
     // Signals that a card has been touched and updates the view after the model makes any changes.
@@ -72,7 +69,6 @@ class ViewController: UIViewController
         Theme(cardBackgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), emojiSet: ["🇨🇦","🇺🇸","🇨🇳","🇷🇺","🇬🇧","🇲🇽","🇦🇺","🇯🇵","🇰🇷"]),
         Theme(cardBackgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), emojiSet: ["😀","😂","☺️","🧐","😔","😡","🤔","🙄","😴"])
     ]
-    
 
     lazy var currentTheme = themeSets[game.theme]
     
