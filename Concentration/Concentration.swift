@@ -10,10 +10,10 @@ import Foundation
 
 class Concentration
 {
-    var cards = [Card]()
-    var theme = Int()
+    private(set) var cards = [Card]()
+    private(set) var theme = Int()
     
-    var indexOfOneAndOnlyFaceUpCard: Int? {
+    private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
             var foundIndex: Int?
             for index in cards.indices {
@@ -34,9 +34,9 @@ class Concentration
         }
     }
     
-    var flipCount = 0
-    var score = Score()
-    var currentDateTime = Date()
+    private(set) var flipCount = 0
+    private(set) var score = Score()
+    private var currentDateTime = Date()
     
     func chooseCard(at index: Int) {
         if !cards[index].isMatched {
@@ -70,7 +70,7 @@ class Concentration
     }
    
     // Sorts an array of type Card through mutation of the inout argument.
-    func sortCards(cards: inout [Card]) {
+    private func sortCards(cards: inout [Card]) {
         var sortedCards = [Card]()
         for _ in 1...cards.count {
             // Randomly removes a card from cards and adds it to sortedCards.

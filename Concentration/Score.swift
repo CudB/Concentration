@@ -10,8 +10,8 @@ import Foundation
 
 class Score
 {
-    var startingScore: Int
-    lazy var value = startingScore
+    private var startingScore: Int
+    private(set) lazy var value = startingScore
     
     func resetScore() {
         value = startingScore
