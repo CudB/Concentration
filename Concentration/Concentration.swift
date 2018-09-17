@@ -83,7 +83,7 @@ class Concentration
     // Start a new game by reverting to initial game state, sorting all cards, and selecting a new theme at random.
     func startNewGame(numberOfThemes: Int) {
         assert(numberOfThemes > 0, "Concentration.startNewGame(numberOfThemes: \(numberOfThemes): you must have at least one theme")
-        theme = Int(arc4random_uniform(UInt32(numberOfThemes)))
+        theme = numberOfThemes.arc4random
         for index in 0..<cards.count {
             cards[index].isFaceUp = false
             cards[index].isMatched = false
