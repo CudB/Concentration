@@ -13,7 +13,26 @@ class Concentration
     var cards = [Card]()
     var theme = Int()
     
-    var indexOfOneAndOnlyFaceUpCard: Int?
+    var indexOfOneAndOnlyFaceUpCard: Int? {
+        get {
+            var foundIndex: Int?
+            for index in cards.indices {
+                if cards[index].isFaceUp {
+                    if foundIndex == nil {
+                        foundIndex = index
+                    } else {
+                        return nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = (index == newValue)
+            }
+        }
+    }
     
     var flipCount = 0
     var score = Score()
@@ -41,14 +60,9 @@ class Concentration
                 cards[index].isFaceUp = true
                 cards[index].hasBeenSeen = true
                 cards[matchIndex].hasBeenSeen = true
-                indexOfOneAndOnlyFaceUpCard = nil
                 flipCount += 1
             } else if cards[index].isFaceUp == false {
                 // Flipping the first card.
-                for flipDownIndex in cards.indices {
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = index
                 flipCount += 1
             }
@@ -74,7 +88,6 @@ class Concentration
             cards[index].hasBeenSeen = false
         }
         sortCards(cards: &cards)
-        indexOfOneAndOnlyFaceUpCard = nil
         flipCount = 0
         score.resetScore()
         currentDateTime = Date()

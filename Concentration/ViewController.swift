@@ -15,7 +15,11 @@ class ViewController: UIViewController
         updateViewFromModel()
     }
 
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2, numberOfThemes: themeSets.count)
+    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards, numberOfThemes: themeSets.count)
+    
+    var numberOfPairsOfCards: Int {
+        return (cardButtons.count + 1) / 2
+    }
     
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var flipCountLabel: UILabel!
