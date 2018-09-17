@@ -39,6 +39,7 @@ class Concentration
     private var currentDateTime = Date()
     
     func chooseCard(at index: Int) {
+        assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // Flipping a second card.
@@ -81,6 +82,7 @@ class Concentration
     
     // Start a new game by reverting to initial game state, sorting all cards, and selecting a new theme at random.
     func startNewGame(numberOfThemes: Int) {
+        assert(numberOfThemes > 0, "Concentration.startNewGame(numberOfThemes: \(numberOfThemes): you must have at least one theme")
         theme = Int(arc4random_uniform(UInt32(numberOfThemes)))
         for index in 0..<cards.count {
             cards[index].isFaceUp = false
@@ -95,6 +97,7 @@ class Concentration
     
     init(numberOfPairsOfCards: Int, numberOfThemes: Int) {
         // Create a deck of paired cards.
+        assert(numberOfPairsOfCards > 0, "Concentration.init(numberOfPairsOfCards: \(numberOfPairsOfCards): you must have at least one pair of cards")
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
