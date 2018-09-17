@@ -82,8 +82,7 @@ class ViewController: UIViewController
     // Return "?" instead of an emoji if there aren't enough emojis available in a set.
     private func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil, currentTheme.emojiSet.count > 0 {
-                let randomIndex = Int(arc4random_uniform(UInt32(currentTheme.emojiSet.count)))
-                emoji[card.identifier] = currentTheme.emojiSet.remove(at: randomIndex)
+                emoji[card.identifier] = currentTheme.emojiSet.remove(at: currentTheme.emojiSet.count.arc4random)
         }
         return emoji[card.identifier] ?? "?"
     }

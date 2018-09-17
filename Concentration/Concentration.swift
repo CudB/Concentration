@@ -75,7 +75,7 @@ class Concentration
         var sortedCards = [Card]()
         for _ in 1...cards.count {
             // Randomly removes a card from cards and adds it to sortedCards.
-            sortedCards += [cards.remove(at: Int(arc4random_uniform(UInt32(cards.count))))]
+            sortedCards += [cards.remove(at: cards.count.arc4random)]
         }
         cards = sortedCards
     }
