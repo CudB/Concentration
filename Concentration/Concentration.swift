@@ -95,7 +95,7 @@ class Concentration
         currentDateTime = Date()
     }
     
-    init(numberOfPairsOfCards: Int, numberOfThemes: Int) {
+init(numberOfPairsOfCards: Int, numberOfThemes: Int) {
         // Create a deck of paired cards.
         assert(numberOfPairsOfCards > 0, "Concentration.init(numberOfPairsOfCards: \(numberOfPairsOfCards): you must have at least one pair of cards")
         for _ in 1...numberOfPairsOfCards {

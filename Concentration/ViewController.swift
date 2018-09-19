@@ -51,11 +51,11 @@ class ViewController: UIViewController
             let card = game.cards[index]
             if card.isFaceUp {
                 // Make sure a flipped card has an assigned emoji and the correct background color.
-                button.setTitle(emoji(for: card), for: UIControlState.normal)
+                button.setTitle(emoji(for: card), for: UIControl.State.normal)
                 button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             } else {
                 // Make sure a unflipped card is blank and has the correct background color.
-                button.setTitle("", for: UIControlState.normal)
+                button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : currentTheme.cardBackgroundColor
             }
         }
