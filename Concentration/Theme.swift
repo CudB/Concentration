@@ -11,7 +11,7 @@ import UIKit
 
 struct Theme
 {
-    var cardBackgroundColor: UIColor
-    var screenBackgroundColor: UIColor
-    var emojiSet: [String]
+    var cardColor: UIColor
+    var BGColor: UIColor
+    var emojiSet: String
 }

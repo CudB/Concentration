@@ -39,13 +39,13 @@ class ViewController: UIViewController
     // Resets the view after the Concentration model reinitializes and selects and new theme.
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
         game.startNewGame(numberOfThemes: themeSets.count)
-        emoji = [Int:String]()
+        emoji = [Card:String]()
         currentTheme = themeSets[game.theme]
         updateViewFromModel()
     }
 
     private func updateViewFromModel() {
-        view.backgroundColor = currentTheme.screenBackgroundColor
+        view.backgroundColor = currentTheme.BGColor
         for index in cardButtons.indices {
             let button = cardButtons[index]
             let card = game.cards[index]
@@ -56,35 +56,46 @@ class ViewController: UIViewController
             } else {
                 // Make sure a unflipped card is blank and has the correct background color.
                 button.setTitle("", for: UIControl.State.normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : currentTheme.cardBackgroundColor
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : currentTheme.cardColor
             }
         }
-        flipCountLabel.text = "\(game.flipCount) Flips"
+        updateFlipCountLabel()
         scoreLabel.text = "Score: \(game.score.value)"
+    }
+    
+    private func updateFlipCountLabel() {
+        let attributes: [NSAttributedString.Key:Any] = [
+            .strokeWidth: 5.0,
+            .strokeColor: #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        ]
+        let attributedString = NSAttributedString(string: "\(game.flipCount) Flips", attributes: attributes)
+        flipCountLabel.attributedText = attributedString
     }
     
     // An array containing various themes.
     // Add or change a theme entry to customize.
     private let themeSets = [
-        Theme(cardBackgroundColor: #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), emojiSet: ["🎃","👻","😱","😈","🙀","🦇","🍭","🍎","🍬"]),
-        Theme(cardBackgroundColor: #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), emojiSet: ["🏒","🎾","⚾️","🏈","⚽️","🏀","🏐","🏓","🏸"]),
-        Theme(cardBackgroundColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), emojiSet: ["🐀","🐂","🐅","🐇","🐉","🐍","🐎","🐐","🐒","🐓","🐕","🐖"]),
-        Theme(cardBackgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), emojiSet: ["🚗","🚌","🏎","🚓","🚑","🚒","🚜","🚐","🚚"]),
-        Theme(cardBackgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), emojiSet: ["🇨🇦","🇺🇸","🇨🇳","🇷🇺","🇬🇧","🇲🇽","🇦🇺","🇯🇵","🇰🇷"]),
-        Theme(cardBackgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), screenBackgroundColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), emojiSet: ["😀","😂","☺️","🧐","😔","😡","🤔","🙄","😴"])
+        Theme(cardColor: #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), BGColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), emojiSet: "🎃👻😱😈🙀🦇🍭🍎🍬"),
+        Theme(cardColor: #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), BGColor: #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), emojiSet: "🏒🎾⚾️🏈⚽️🏀🏐🏓🏸"),
+        Theme(cardColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), BGColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), emojiSet: "🐀🐂🐅🐇🐉🐍🐎🐐🐒🐓🐕🐖"),
+        Theme(cardColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), BGColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), emojiSet: "🚗🚌🏎🚓🚑🚒🚜🚐🚚"),
+        Theme(cardColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), BGColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), emojiSet: "🇨🇦🇺🇸🇨🇳🇷🇺🇬🇧🇲🇽🇦🇺🇯🇵🇰🇷"),
+        Theme(cardColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), BGColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), emojiSet: "😀😂☺️🧐😔😡🤔🙄😴")
     ]
 
     private lazy var currentTheme = themeSets[game.theme]
     
-    private var emoji = [Int:String]()
+    private var emoji = [Card:String]()
     
     // Generate and return an emoji for a card if has not already been assigned one.
     // Return "?" instead of an emoji if there aren't enough emojis available in a set.
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, currentTheme.emojiSet.count > 0 {
-                emoji[card.identifier] = currentTheme.emojiSet.remove(at: currentTheme.emojiSet.count.arc4random)
+        if emoji[card] == nil, currentTheme.emojiSet.count > 0 {
+            let randomStringIndex = currentTheme.emojiSet.index(currentTheme.emojiSet.startIndex
+                , offsetBy: currentTheme.emojiSet.count.arc4random)
+                emoji[card] = String(currentTheme.emojiSet.remove(at: randomStringIndex))
         }
-        return emoji[card.identifier] ?? "?"
+        return emoji[card] ?? "?"
     }
 }
 

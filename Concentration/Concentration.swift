@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Concentration
+struct Concentration
 {
     private(set) var cards = [Card]()
     private(set) var theme = Int()
@@ -38,12 +38,12 @@ class Concentration
     private(set) var score = Score()
     private var currentDateTime = Date()
     
-    func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // Flipping a second card.
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] {
                     // Successful match; score incremented.
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
@@ -81,7 +81,7 @@ class Concentration
     }
     
     // Start a new game by reverting to initial game state, sorting all cards, and selecting a new theme at random.
-    func startNewGame(numberOfThemes: Int) {
+    mutating func startNewGame(numberOfThemes: Int) {
         assert(numberOfThemes > 0, "Concentration.startNewGame(numberOfThemes: \(numberOfThemes): you must have at least one theme")
         theme = numberOfThemes.arc4random
         for index in 0..<cards.count {
