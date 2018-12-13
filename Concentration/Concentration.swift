@@ -3,7 +3,7 @@
 //  Concentration
 //
 //  Created by Andy Au on 2018-09-12.
-//  Copyright © 2018 Standford University. All rights reserved.
+//  Copyright © 2018 Stanford University. All rights reserved.
 //
 
 import Foundation
@@ -15,8 +15,7 @@ struct Concentration
     
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
-            let faceUpCardIndices = cards.indices.filter { cards[$0].isFaceUp }
-            return faceUpCardIndices.count == 1 ? faceUpCardIndices.first : nil
+            return cards.indices.filter { cards[$0].isFaceUp }.oneAndOnly
         }
         set {
             for index in cards.indices {
@@ -94,5 +93,11 @@ init(numberOfPairsOfCards: Int, numberOfThemes: Int) {
             cards += [card, card]
         }
         startNewGame(numberOfThemes: numberOfThemes)
+    }
+}
+
+extension Collection {
+    var oneAndOnly: Element? {
+        return count == 1 ? first : nil
     }
 }
